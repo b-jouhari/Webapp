@@ -1,8 +1,8 @@
 To run this application locally
 
 Clone the repository locally:
+git clone https://github.com/b-jouhari/Webapp.git
 
-git clone https://github.com/b-jouhari/Webapp/wiki
 Use Visual Studio 2022:
 
 Open Visual Studio 2022.
