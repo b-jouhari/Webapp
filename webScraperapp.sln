@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webScraperapp", "webScraperapp\webScraperapp.csproj", "{95B38821-23D7-4287-9FB5-A7ACB1F2E61F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webScraperapp", "webScraperapp\webScraperapp.csproj", "{95B38821-23D7-4287-9FB5-A7ACB1F2E61F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject.UnitTest", "TestProject.UnitTest\TestProject.UnitTest.csproj", "{9BD06E6C-03A2-4A7A-BEFA-45080ED5C662}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{95B38821-23D7-4287-9FB5-A7ACB1F2E61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95B38821-23D7-4287-9FB5-A7ACB1F2E61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95B38821-23D7-4287-9FB5-A7ACB1F2E61F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD06E6C-03A2-4A7A-BEFA-45080ED5C662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD06E6C-03A2-4A7A-BEFA-45080ED5C662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD06E6C-03A2-4A7A-BEFA-45080ED5C662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD06E6C-03A2-4A7A-BEFA-45080ED5C662}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

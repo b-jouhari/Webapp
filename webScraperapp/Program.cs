@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IWebScrapedHtmlHelper, WebScrapedHtmlHelper>();
-builder.Services.AddScoped<HttpClientWrapper, HttpClientWrapper>();
+builder.Services.AddScoped<IHttpClientWrapper, HttpClientWrapper>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

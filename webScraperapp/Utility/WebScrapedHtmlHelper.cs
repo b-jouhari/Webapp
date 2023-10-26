@@ -76,6 +76,11 @@ namespace webapi.Utility
             return wordInsight;
         }
 
+        /// <summary>
+        /// Fill any unwanted word that shoud not be inclued in top 10
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
         private bool IsStopWord(string word)
         {
             var stopWords = new HashSet<string>()

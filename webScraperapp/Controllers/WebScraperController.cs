@@ -11,8 +11,8 @@ namespace webapi.Controllers
     {
         private readonly ILogger<WebScraperController> _logger;
         private readonly IWebScrapedHtmlHelper _webScrapedHtmlHelper;
-        private readonly HttpClientWrapper _httpClientWrapper;
-        public WebScraperController(ILogger<WebScraperController> logger, IWebScrapedHtmlHelper webScrapedHtmlHelper, HttpClientWrapper httpClientWrapper)
+        private readonly IHttpClientWrapper _httpClientWrapper;
+        public WebScraperController(ILogger<WebScraperController> logger, IWebScrapedHtmlHelper webScrapedHtmlHelper, IHttpClientWrapper httpClientWrapper)
         {
             _logger = logger;
             _webScrapedHtmlHelper = webScrapedHtmlHelper;
