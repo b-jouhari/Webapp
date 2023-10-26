@@ -1,9 +1,13 @@
+using webapi.Utility;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<IWebScrapedHtmlHelper, WebScrapedHtmlHelper>();
+builder.Services.AddScoped<HttpClientWrapper, HttpClientWrapper>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

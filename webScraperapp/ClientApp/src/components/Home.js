@@ -1,26 +1,85 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import  TextInsider  from './TextInsider';
+import  GridViewer  from './GridViewer';
+const isValidUrl = (url) => {
+    const regex = /[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)?/i;
+    return regex.test(url);
+};
 
-export class Home extends Component {
-  static displayName = Home.name;
+ 
+export default function Home() {
 
-  render() {
+    const [scrapedImageWithAltTextData, setScrapedImageWithAltTextData] = useState([]);
+    const [barData, setBarData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [url, setUrl] = useState('');
+
+    const fetchWebScraperData = useCallback(async () => {
+        try {
+            setLoading(true); 
+
+            const scrapedImageWithAltTextEndPoint = 'webscraper/GetWebScrapedImagesWithAltText/?url=' + url;
+            const scrapedImageWithAltTextResponse = await fetch(scrapedImageWithAltTextEndPoint);
+            const scrapedImageWithAltTextData = await scrapedImageWithAltTextResponse.json();
+
+            const scraperInsightsEndPoint = 'webscraper/GetWebScraperInsights/?url=' + url;
+            const scraperInsightsResponse = await fetch(scraperInsightsEndPoint);
+            const scraperInsightsData = await scraperInsightsResponse.json();
+            const words = scraperInsightsData.words;
+
+           
+            const labels = words.map((word) => word.key);
+
+            const barDataValues = words.map((word) => word.value);
+
+            const dataInsight = {
+                labels,
+                datasets: [
+                    {
+                        label: '# of Top Words',
+                        data: barDataValues,
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    },
+                ],
+            }
+
+            setBarData(dataInsight);
+            setScrapedImageWithAltTextData(scrapedImageWithAltTextData);
+            setLoading(false);
+        } catch (error) {
+            setError(error);
+            setLoading(false);
+        }
+    }, [url]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
+        <div className="mainContainer">
+            
+            <label>
+                Url:
+                <input id="url" value={url} onChange={(event) => setUrl(event.target.value)} />
+            </label>
+
+            <button className="btn btn-primary" onClick={fetchWebScraperData} disabled={!isValidUrl(url)}>
+                Start Scaping
+            </button>
+
+            <div className="componentContainer">
+
+                {(scrapedImageWithAltTextData === undefined || scrapedImageWithAltTextData.length === 0) ? '' :
+                    <GridViewer gridViewerImages={scrapedImageWithAltTextData} />}
+                {(barData === undefined || barData.length === 0) ? '' : <TextInsider barData={barData} />}
+            </div>
+        </div>
     );
-  }
 }

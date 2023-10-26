@@ -12,3 +12,60 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+body {
+    margin: 0 auto;
+}
+
+.slick-slide {
+    height: auto;
+}
+
+.slick-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+.slick-slide {
+    text-align: center;
+}
+
+.slick1-div-container {
+    max-width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.slick1-div-container-img {
+    display: block;
+    max-width: 200px;
+    width: auto;
+    height: auto;
+}
+
+.slick2-div-container {
+    margin: 0 auto;
+    text-align: -webkit-center;
+}
+
+.slick2-div-container-img {
+    display: block;
+    max-width: 50px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+}
+
+.mainContainer {
+    margin: 20px;
+}
+
+.componentContainer {
+    margin: 20px;
+}
+
+#url {
+    width: 300px;
+}
